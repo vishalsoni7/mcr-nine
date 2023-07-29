@@ -1,46 +1,43 @@
-import { useState } from "react";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { VideoContext } from "../component/VideosContext";
-
-import "../css/explore.css";
 import { SideBar } from "./SideBar";
 
-export const Explore = () => {
-  const [searchVideo, setSearchVideo] = useState([]);
+export const Category = () => {
   const { isAllVideos } = useContext(VideoContext);
+  const { categories } = useParams();
 
-  const handleVideos = (e) => {
-    const inputValue = e.target.value.toLowerCase();
-    const filterVideos = isAllVideos.filter(({ title }) =>
-      title.toLowerCase().includes(inputValue)
-    );
-    setSearchVideo(inputValue === "" ? isAllVideos : filterVideos);
-  };
+  const filterCategories = isAllVideos.filter(
+    ({ category }) => category === categories
+  );
 
   return (
     <div
       style={{
         display: "flex",
-        alignItems: "baseline",
+        alignItems: "flex-start",
         justifyContent: "space-around",
       }}
     >
       <SideBar />
       <div className="explore-main-div">
-        <h1> Explore </h1>
-        <input
-          placeholder="Search video by title"
-          type="text"
-          onChange={handleVideos}
-        />
-        <div className="explore-inner-div-a">
-          {searchVideo?.map(
+        <h1 style={{ textAlign: "left" }}> {categories} </h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            gap: "1rem",
+            flexWrap: "wrap",
+          }}
+        >
+          {" "}
+          {filterCategories?.map(
             ({ _id, title, views, thumbnail, creator, category }) => (
               <div key={_id} className="explore-inner-div-b">
                 <div>
-                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                  <img src={thumbnail} />
                 </div>
-
                 <div className="explore-about">
                   <img className="explore-about-img" src="user.jpg" />
                   <p>
@@ -54,7 +51,7 @@ export const Explore = () => {
                 </div>
               </div>
             )
-          )}
+          )}{" "}
         </div>
       </div>
     </div>

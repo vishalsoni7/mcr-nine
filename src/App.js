@@ -6,16 +6,18 @@ import { Home } from "./pages/Home";
 import { Explore } from "./pages/Explore";
 import { WatchLater } from "./pages/WatchLater";
 import { PlayList } from "./pages/PlayList";
+import { Category } from "./pages/Categories";
 
 function App() {
   return (
     <div className="App">
-      <SideBar />
+      {/* <SideBar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/watchlater" element={<WatchLater />} />
         <Route path="/playlist" element={<PlayList />} />
+        <Route path="/category/:categories" element={<Category />} />
       </Routes>
     </div>
   );

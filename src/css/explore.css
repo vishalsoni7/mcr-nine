@@ -1,0 +1,59 @@
+.explore-main-div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  max-width: 70rem;
+}
+
+.explore-main-div input {
+  width: 90%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.explore-inner-div-a {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.explore-inner-div-b {
+  width: 22rem;
+  height: 22rem;
+  display: flex;
+  border-radius: 5px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.explore-about-img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.explore-inner-div-b-img {
+  width: 22rem;
+  height: 15rem;
+  border-radius: 5px 5px 0px 0px;
+  object-fit: fill;
+}
+
+.span {
+  font-size: small;
+}

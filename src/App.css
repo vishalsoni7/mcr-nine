@@ -1,8 +1,5 @@
 .App {
   text-align: center;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-evenly;
 }
 body {
   color: #252525;
@@ -15,7 +12,8 @@ body {
   align-items: flex-start;
   flex-direction: column;
   width: 15rem;
-  margin: 4rem 5rem 0rem 3rem;
+  margin-left: 3rem;
+  margin: 3rem 0rem 0rem 1rem;
 }
 
 .navLink {
