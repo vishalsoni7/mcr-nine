@@ -54,7 +54,7 @@ export const Explore = () => {
 
                   <FontAwesomeIcon
                     onClick={() => {
-                      inWatchList(_id)
+                      inWatchList
                         ? removeFromWatchLater(_id)
                         : handleWatchLater(video);
                     }}

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 import { categories } from "../data/categories";
 import { videos } from "../data/video";
@@ -13,15 +13,15 @@ export const VideoPrivoder = ({ children }) => {
 
   const handleWatchLater = (item) => {
     setIsWatchLater((isWatchLater) => [...isWatchLater, item]);
-    console.log(isWatchLater);
   };
 
-  const inWatchList = ({ _id }) =>
-    isWatchLater.find((item) => item._id === _id);
+  const inWatchList = isWatchLater.find((video) => video._id);
 
-  const removeFromWatchLater = ({ _id }) => {
-    const filterWatchLater = isWatchLater.filter((video) => video._id !== _id);
-    console.log(filterWatchLater);
+  const removeFromWatchLater = (clickedVideo) => {
+    const filterWatchLater = isWatchLater.filter(
+      ({ _id }) => _id !== clickedVideo
+    );
+
     setIsWatchLater(filterWatchLater);
   };
 
@@ -33,6 +33,8 @@ export const VideoPrivoder = ({ children }) => {
     removeFromWatchLater,
     inWatchList,
   };
+
+  useEffect(() => {}, [isWatchLater]);
 
   return (
     <>

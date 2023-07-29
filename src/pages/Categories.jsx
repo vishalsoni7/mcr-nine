@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export const Category = () => {
-  const { isAllVideos, handleWatchLater } = useContext(VideoContext);
+  const { isAllVideos, handleWatchLater, inWatchList, removeFromWatchLater } =
+    useContext(VideoContext);
   const { categories } = useParams();
 
   const filterCategories = isAllVideos.filter(
@@ -39,27 +40,31 @@ export const Category = () => {
 
             return (
               <div key={_id} className="explore-inner-div-b">
-                <NavLink to={`/categories/${_id}`} className="navLink">
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-start",
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                  <FontAwesomeIcon
+                    onClick={() => {
+                      inWatchList
+                        ? removeFromWatchLater(_id)
+                        : handleWatchLater(video);
                     }}
-                  >
-                    <img className="explore-inner-div-b-img" src={thumbnail} />
-                    <FontAwesomeIcon
-                      onClick={() => handleWatchLater(video)}
-                      icon={faClock}
-                      style={{
-                        marginLeft: "-2rem",
-                        height: "2rem",
-                        backgroundColor: "whitesmoke",
-                        borderRadius: "0px 0px 0px 10px",
-                        cursor: "pointer",
-                      }}
-                    />
-                  </div>
+                    icon={faClock}
+                    style={{
+                      marginLeft: "-2rem",
+                      height: "2rem",
+                      backgroundColor: "whitesmoke",
+                      borderRadius: "0px 0px 0px 10px",
+                      cursor: "pointer",
+                    }}
+                  />
+                </div>
+                <NavLink to={`/categories/${_id}`} className="navLink">
                   <div className="A">
                     <div>
                       <img

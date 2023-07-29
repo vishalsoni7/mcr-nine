@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export const WatchLater = () => {
-  const { isWatchLater } = useContext(VideoContext);
+  const { isWatchLater, inWatchList, removeFromWatchLater, handleWatchLater } =
+    useContext(VideoContext);
 
   return (
     <div
@@ -36,6 +37,11 @@ export const WatchLater = () => {
                     <img className="explore-inner-div-b-img" src={thumbnail} />
 
                     <FontAwesomeIcon
+                      onClick={() => {
+                        inWatchList
+                          ? removeFromWatchLater(_id)
+                          : handleWatchLater(video);
+                      }}
                       icon={faClock}
                       style={{
                         marginLeft: "-2rem",
