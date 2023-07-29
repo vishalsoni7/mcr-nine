@@ -5,6 +5,9 @@ import { VideoContext } from "../component/VideosContext";
 import "../css/explore.css";
 import { SideBar } from "./SideBar";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+
 export const Explore = () => {
   const [searchVideo, setSearchVideo] = useState([]);
   const { isAllVideos } = useContext(VideoContext);
@@ -37,20 +40,52 @@ export const Explore = () => {
           {searchVideo?.map(
             ({ _id, title, views, thumbnail, creator, category }) => (
               <div key={_id} className="explore-inner-div-b">
-                <div>
-                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <img className="explore-inner-div-b-img" src={thumbnail} />{" "}
+                  <FontAwesomeIcon
+                    icon={faClock}
+                    style={{
+                      marginLeft: "-2rem",
+                      height: "2rem",
+                      backgroundColor: "whitesmoke",
+                      borderRadius: "0px 0px 0px 10px",
+                    }}
+                  />
                 </div>
-
-                <div className="explore-about">
-                  <img className="explore-about-img" src="user.jpg" />
-                  <p>
-                    <b> {title} </b>
-                  </p>
-                  <span>
-                    <b> {category} </b>
-                  </span>
-                  <span className="span"> {views} |</span>
-                  <span className="span"> {creator} </span>
+                <div className="A">
+                  <div>
+                    <img
+                      className="explore-about-img"
+                      src="user.jpg"
+                      alt="user"
+                    />{" "}
+                  </div>
+                  <div>
+                    {" "}
+                    <p>
+                      {" "}
+                      <b> {title} </b>
+                    </p>{" "}
+                    <span>
+                      {" "}
+                      <b> {category}</b>{" "}
+                    </span>
+                    <br />
+                    <span className="span">
+                      {" "}
+                      <b>{views} </b> Views
+                    </span>{" "}
+                    |{" "}
+                    <span className="span">
+                      <b>{creator}</b>{" "}
+                    </span>
+                  </div>
                 </div>
               </div>
             )

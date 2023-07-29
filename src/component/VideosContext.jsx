@@ -8,10 +8,15 @@ export const VideoContext = createContext();
 
 export const VideoPrivoder = ({ children }) => {
   const [categorie, setCategories] = useState(categories);
-
   const [isAllVideos, setIsAllVideos] = useState(videos);
+  const [isPlayList, setIsPlayList] = useState([]);
+  const [isWatchLater, setIsWatchLater] = useState([]);
 
-  const values = { categorie, isAllVideos };
+  const handleWatchLater = (item) => {
+    setIsWatchLater((isWatchLater) => [...isWatchLater, item]);
+  };
+
+  const values = { categorie, isAllVideos, handleWatchLater, isWatchLater };
 
   return (
     <>

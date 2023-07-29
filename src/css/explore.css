@@ -10,7 +10,7 @@
 }
 
 .explore-main-div input {
-  width: 90%;
+  width: 100%;
   padding: 0.5rem;
   border: none;
   border-radius: 50px;
@@ -56,4 +56,13 @@
 
 .span {
   font-size: small;
+}
+
+.A {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-left: 10px;
+  padding-right: 10px;
 }

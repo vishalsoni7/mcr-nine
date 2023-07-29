@@ -3,8 +3,12 @@ import { useParams } from "react-router-dom";
 import { VideoContext } from "../component/VideosContext";
 import { SideBar } from "./SideBar";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+// ... (previous imports and code)
+
 export const Category = () => {
-  const { isAllVideos } = useContext(VideoContext);
+  const { isAllVideos, handleWatchLater } = useContext(VideoContext);
   const { categories } = useParams();
 
   const filterCategories = isAllVideos.filter(
@@ -31,27 +35,57 @@ export const Category = () => {
             flexWrap: "wrap",
           }}
         >
-          {" "}
-          {filterCategories?.map(
-            ({ _id, title, views, thumbnail, creator, category }) => (
+          {filterCategories?.map((video) => {
+            const { _id, title, views, thumbnail, creator, category } = video;
+            return (
               <div key={_id} className="explore-inner-div-b">
-                <div>
-                  <img src={thumbnail} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                  <FontAwesomeIcon
+                    onClick={() => handleWatchLater(video)}
+                    icon={faClock}
+                    style={{
+                      marginLeft: "-2rem",
+                      height: "2rem",
+                      backgroundColor: "whitesmoke",
+                      borderRadius: "0px 0px 0px 10px",
+                    }}
+                  />
                 </div>
-                <div className="explore-about">
-                  <img className="explore-about-img" src="user.jpg" />
-                  <p>
-                    <b> {title} </b>
-                  </p>
-                  <span>
-                    <b> {category} </b>
-                  </span>
-                  <span className="span"> {views} |</span>
-                  <span className="span"> {creator} </span>
+                <div className="A">
+                  <div>
+                    <img
+                      className="explore-about-img"
+                      src="user.jpg"
+                      alt="user"
+                    />
+                  </div>
+                  <div>
+                    <p>
+                      <b>{title}</b>
+                    </p>{" "}
+                    <span>
+                      <b>{category}</b>{" "}
+                    </span>
+                    <br />
+                    <span className="span">
+                      <b>{views}</b> Views
+                    </span>{" "}
+                    |{" "}
+                    <span className="span">
+                      <b>{creator}</b>{" "}
+                    </span>
+                  </div>
                 </div>
               </div>
-            )
-          )}{" "}
+            );
+          })}
         </div>
       </div>
     </div>

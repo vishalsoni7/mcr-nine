@@ -11,8 +11,6 @@ body {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 15rem;
-  margin-left: 3rem;
   margin: 3rem 0rem 0rem 1rem;
 }
 
