@@ -31,33 +31,3 @@ export const Home = () => {
     </>
   );
 };
-
-//   return (
-//     <>
-//       <div
-//         style={{
-//           display: "flex",
-//           alignItems: "flex-start",
-//           justifyContent: "space-evenly",
-//         }}
-//       >
-//         {" "}
-//         <SideBar />
-//         <div>
-//           <div className="home">
-//             {categorie.map(({ _id, thumbnail, category }) => (
-//               <div key={_id}>
-//                 <NavLink className="navLink" to={`/category/${category}`}>
-//                   <img src={thumbnail} alt={category} />{" "}
-//                   <p>
-//                     <b>{category} </b>{" "}
-//                   </p>
-//                 </NavLink>
-//               </div>
-//             ))}
-//           </div>
-//         </div>{" "}
-//       </div>
-//     </>
-//   );
-// };

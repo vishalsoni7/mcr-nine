@@ -12,3 +12,9 @@
   flex-wrap: wrap;
   gap: 2rem;
 }
+
+.icon {
+  height: 1.5rem;
+  border-radius: 0px 0px 0px 10px;
+  cursor: pointer;
+}

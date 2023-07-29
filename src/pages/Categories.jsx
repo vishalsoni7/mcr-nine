@@ -49,8 +49,9 @@ export const Category = () => {
                 >
                   <img className="explore-inner-div-b-img" src={thumbnail} />
                   <FontAwesomeIcon
+                    title={inWatchList ? "Remove" : "Add"}
                     onClick={() => {
-                      inWatchList
+                      inWatchList(_id)
                         ? removeFromWatchLater(_id)
                         : handleWatchLater(video);
                     }}

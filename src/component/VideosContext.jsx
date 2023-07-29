@@ -12,16 +12,15 @@ export const VideoPrivoder = ({ children }) => {
   const [isWatchLater, setIsWatchLater] = useState([]);
 
   const handleWatchLater = (item) => {
-    setIsWatchLater((isWatchLater) => [...isWatchLater, item]);
+    setIsWatchLater((previ) => [...previ, item]);
   };
 
-  const inWatchList = isWatchLater.find((video) => video._id);
+  const inWatchList = (id) => isWatchLater.some((video) => video._id === id);
 
   const removeFromWatchLater = (clickedVideo) => {
     const filterWatchLater = isWatchLater.filter(
       ({ _id }) => _id !== clickedVideo
     );
-
     setIsWatchLater(filterWatchLater);
   };
 
@@ -34,7 +33,9 @@ export const VideoPrivoder = ({ children }) => {
     inWatchList,
   };
 
-  useEffect(() => {}, [isWatchLater]);
+  useEffect(() => {
+    console.log(isWatchLater);
+  }, [isWatchLater]);
 
   return (
     <>
