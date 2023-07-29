@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { createContext, useState } from "react";
 
 import { categories } from "../data/categories";
@@ -14,9 +13,26 @@ export const VideoPrivoder = ({ children }) => {
 
   const handleWatchLater = (item) => {
     setIsWatchLater((isWatchLater) => [...isWatchLater, item]);
+    console.log(isWatchLater);
   };
 
-  const values = { categorie, isAllVideos, handleWatchLater, isWatchLater };
+  const inWatchList = ({ _id }) =>
+    isWatchLater.find((item) => item._id === _id);
+
+  const removeFromWatchLater = ({ _id }) => {
+    const filterWatchLater = isWatchLater.filter((video) => video._id !== _id);
+    console.log(filterWatchLater);
+    setIsWatchLater(filterWatchLater);
+  };
+
+  const values = {
+    categorie,
+    isAllVideos,
+    handleWatchLater,
+    isWatchLater,
+    removeFromWatchLater,
+    inWatchList,
+  };
 
   return (
     <>

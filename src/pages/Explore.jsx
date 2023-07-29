@@ -9,8 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export const Explore = () => {
-  const [searchVideo, setSearchVideo] = useState([]);
-  const { isAllVideos } = useContext(VideoContext);
+  const { isAllVideos, handleWatchLater, inWatchList, removeFromWatchLater } =
+    useContext(VideoContext);
+
+  const [searchVideo, setSearchVideo] = useState(isAllVideos);
 
   const handleVideos = (e) => {
     const inputValue = e.target.value.toLowerCase();
@@ -37,8 +39,9 @@ export const Explore = () => {
           onChange={handleVideos}
         />
         <div className="explore-inner-div-a">
-          {searchVideo?.map(
-            ({ _id, title, views, thumbnail, creator, category }) => (
+          {searchVideo?.map((video) => {
+            const { _id, title, views, thumbnail, creator, category } = video;
+            return (
               <div key={_id} className="explore-inner-div-b">
                 <div
                   style={{
@@ -47,14 +50,21 @@ export const Explore = () => {
                     justifyContent: "flex-start",
                   }}
                 >
-                  <img className="explore-inner-div-b-img" src={thumbnail} />{" "}
+                  <img className="explore-inner-div-b-img" src={thumbnail} />
+
                   <FontAwesomeIcon
+                    onClick={() => {
+                      inWatchList(_id)
+                        ? removeFromWatchLater(_id)
+                        : handleWatchLater(video);
+                    }}
                     icon={faClock}
                     style={{
                       marginLeft: "-2rem",
                       height: "2rem",
                       backgroundColor: "whitesmoke",
                       borderRadius: "0px 0px 0px 10px",
+                      cursor: "pointer",
                     }}
                   />
                 </div>
@@ -64,22 +74,18 @@ export const Explore = () => {
                       className="explore-about-img"
                       src="user.jpg"
                       alt="user"
-                    />{" "}
+                    />
                   </div>
                   <div>
-                    {" "}
                     <p>
-                      {" "}
-                      <b> {title} </b>
+                      <b>{title}</b>
                     </p>{" "}
                     <span>
-                      {" "}
-                      <b> {category}</b>{" "}
+                      <b>{category}</b>{" "}
                     </span>
                     <br />
                     <span className="span">
-                      {" "}
-                      <b>{views} </b> Views
+                      <b>{views}</b> Views
                     </span>{" "}
                     |{" "}
                     <span className="span">
@@ -88,8 +94,8 @@ export const Explore = () => {
                   </div>
                 </div>
               </div>
-            )
-          )}
+            );
+          })}
         </div>
       </div>
     </div>

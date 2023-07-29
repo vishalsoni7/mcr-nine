@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { VideoContext } from "../component/VideosContext";
 import { SideBar } from "./SideBar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
-// ... (previous imports and code)
 
 export const Category = () => {
   const { isAllVideos, handleWatchLater } = useContext(VideoContext);
@@ -37,52 +36,56 @@ export const Category = () => {
         >
           {filterCategories?.map((video) => {
             const { _id, title, views, thumbnail, creator, category } = video;
+
             return (
               <div key={_id} className="explore-inner-div-b">
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}
-                >
-                  <img className="explore-inner-div-b-img" src={thumbnail} />
-                  <FontAwesomeIcon
-                    onClick={() => handleWatchLater(video)}
-                    icon={faClock}
+                <NavLink to={`/categories/${_id}`} className="navLink">
+                  <div
                     style={{
-                      marginLeft: "-2rem",
-                      height: "2rem",
-                      backgroundColor: "whitesmoke",
-                      borderRadius: "0px 0px 0px 10px",
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "flex-start",
                     }}
-                  />
-                </div>
-                <div className="A">
-                  <div>
-                    <img
-                      className="explore-about-img"
-                      src="user.jpg"
-                      alt="user"
+                  >
+                    <img className="explore-inner-div-b-img" src={thumbnail} />
+                    <FontAwesomeIcon
+                      onClick={() => handleWatchLater(video)}
+                      icon={faClock}
+                      style={{
+                        marginLeft: "-2rem",
+                        height: "2rem",
+                        backgroundColor: "whitesmoke",
+                        borderRadius: "0px 0px 0px 10px",
+                        cursor: "pointer",
+                      }}
                     />
                   </div>
-                  <div>
-                    <p>
-                      <b>{title}</b>
-                    </p>{" "}
-                    <span>
-                      <b>{category}</b>{" "}
-                    </span>
-                    <br />
-                    <span className="span">
-                      <b>{views}</b> Views
-                    </span>{" "}
-                    |{" "}
-                    <span className="span">
-                      <b>{creator}</b>{" "}
-                    </span>
+                  <div className="A">
+                    <div>
+                      <img
+                        className="explore-about-img"
+                        src="user.jpg"
+                        alt="user"
+                      />
+                    </div>
+                    <div>
+                      <p>
+                        <b>{title}</b>
+                      </p>{" "}
+                      <span>
+                        <b>{category}</b>{" "}
+                      </span>
+                      <br />
+                      <span className="span">
+                        <b>{views}</b> Views
+                      </span>{" "}
+                      |{" "}
+                      <span className="span">
+                        <b>{creator}</b>{" "}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </NavLink>
               </div>
             );
           })}
