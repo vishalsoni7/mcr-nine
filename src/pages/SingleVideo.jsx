@@ -3,52 +3,45 @@ import { useParams } from "react-router-dom";
 import { VideoContext } from "../component/VideosContext";
 import { SideBar } from "./SideBar";
 
+import "../css/singlevideo.css";
+import "../css/note.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
   faBars,
   faListCheck,
+  faPenToSquare,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import { Note } from "./Note";
 
 export const SingleVideo = () => {
-  const { isAllVideos, inWatchList, removeFromWatchLater, handleWatchLater } =
-    useContext(VideoContext);
+  const {
+    noteModal,
+    setNoteModal,
+    notesList,
+    isAllVideos,
+    inWatchList,
+    removeFromWatchLater,
+    handleWatchLater,
+    deleteNote,
+  } = useContext(VideoContext);
   const { videoId } = useParams();
 
   const findVideo = isAllVideos.find(({ _id }) => +_id === +videoId);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignContent: "flex-start",
-        justifyContent: "space-evenly",
-      }}
-    >
+    <div className="singlevideo-main-div">
       <SideBar />
 
-      <div>
-        <iframe width="750" height="400" src={findVideo?.src}></iframe>{" "}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          {" "}
-          <p>
-            {" "}
-            <b> {findVideo?.title} </b>{" "}
-          </p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "flex-end",
-              gap: "1rem",
-            }}
-          >
+      <div className="i-frame-div">
+        <iframe className="i-frame" src={findVideo?.src}></iframe>
+        <div className="single-video-title">
+          <h3>
+            <b> {findVideo?.title} </b>
+          </h3>
+          <div className="single-video-icon">
             {" "}
             <FontAwesomeIcon
               onClick={() => {
@@ -60,39 +53,64 @@ export const SingleVideo = () => {
               className="icon"
             />{" "}
             <FontAwesomeIcon icon={faBars} className="icon" />
-            <FontAwesomeIcon icon={faListCheck} className="icon" />{" "}
-          </div>
-        </div>
-        <hr />
-      </div>
-      <div>
-        {" "}
-        <p style={{ textAlign: "left", marginLeft: "1rem" }}>
-          <b>More Videos:</b>{" "}
-        </p>{" "}
-        {isAllVideos.map(({ _id, title, thumbnail, creator }) => (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-              margin: "1rem",
-              gap: "1rem",
-            }}
-            key={_id}
-          >
-            {" "}
-            <img
-              style={{ height: "10rem", width: "12rem" }}
-              src={thumbnail}
-              alt="more videos"
+            <FontAwesomeIcon
+              onClick={() => setNoteModal(true)}
+              icon={faListCheck}
+              className="icon"
             />{" "}
-            <p style={{ textAlign: "left" }}>
+          </div>{" "}
+        </div>{" "}
+        {noteModal && (
+          <div
+            onClick={() => setNoteModal(false)}
+            className="note_modal_outer_div"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="note_modal_outer_container"
+            >
+              <Note />
+            </div>
+          </div>
+        )}
+        <div>
+          {" "}
+          <h3> My Notes </h3>{" "}
+        </div>
+        <div className="note-div-a">
+          {notesList.map((note, index) => (
+            <div key={index} className="note-title">
+              {" "}
               <b>
                 {" "}
-                {title} <br /> {creator}
-              </b>{" "}
-            </p>
+                <li> {note} </li>{" "}
+              </b>
+              <div className="note-icon">
+                {" "}
+                <FontAwesomeIcon
+                  onClick={() => setNoteModal(true)}
+                  icon={faPenToSquare}
+                />
+                <FontAwesomeIcon
+                  onClick={() => deleteNote(index)}
+                  icon={faTrash}
+                />{" "}
+              </div>
+            </div>
+          ))}{" "}
+        </div>
+      </div>
+
+      <div className="more-videos">
+        <p>
+          <b> More Videos </b>
+        </p>
+        {isAllVideos.map(({ _id, title, thumbnail, creator }) => (
+          <div className="more-video" key={_id}>
+            <img src={thumbnail} alt="more videos" />
+            <div className="more-video-details">
+              <span> {title} </span> <span> {creator} </span>
+            </div>
           </div>
         ))}
       </div>

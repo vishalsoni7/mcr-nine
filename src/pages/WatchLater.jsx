@@ -9,81 +9,58 @@ export const WatchLater = () => {
     useContext(VideoContext);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "baseline",
-        justifyContent: "space-evenly",
-        width: "100%",
-      }}
-    >
+    <div className="div">
       <SideBar />
       <div className="explore-main-div">
         <h1> Watch Later </h1>
 
-        {isWatchLater.length ? (
-          <div className="explore-inner-div-a">
-            {isWatchLater?.map((video) => {
-              const { _id, title, views, thumbnail, creator, category } = video;
-              return (
-                <div key={_id} className="explore-inner-div-b">
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    <img className="explore-inner-div-b-img" src={thumbnail} />
+        <div className="explore-inner-div-a">
+          {isWatchLater?.map((video) => {
+            const { _id, title, views, thumbnail, creator, category } = video;
+            return (
+              <div key={_id} className="explore-inner-div-b">
+                <div className="category-A">
+                  <img className="explore-inner-div-b-img" src={thumbnail} />
 
-                    <FontAwesomeIcon
-                      onClick={() => {
-                        inWatchList
-                          ? removeFromWatchLater(_id)
-                          : handleWatchLater(video);
-                      }}
-                      icon={faClock}
-                      style={{
-                        marginLeft: "-2rem",
-                        height: "2rem",
-                        backgroundColor: "whitesmoke",
-                        borderRadius: "0px 0px 0px 10px",
-                        cursor: "pointer",
-                      }}
+                  <FontAwesomeIcon
+                    onClick={() => {
+                      inWatchList(_id)
+                        ? removeFromWatchLater(_id)
+                        : handleWatchLater(video);
+                    }}
+                    icon={faClock}
+                    className="category-Icon"
+                  />
+                </div>
+                <div className="A">
+                  <div>
+                    <img
+                      className="explore-about-img"
+                      src="user.jpg"
+                      alt="user"
                     />
                   </div>
-                  <div className="A">
-                    <div>
-                      <img
-                        className="explore-about-img"
-                        src="user.jpg"
-                        alt="user"
-                      />
-                    </div>
-                    <div>
-                      <p>
-                        <b>{title}</b>
-                      </p>{" "}
-                      <span>
-                        <b>{category}</b>{" "}
-                      </span>
-                      <br />
-                      <span className="span">
-                        <b>{views}</b> Views
-                      </span>{" "}
-                      |{" "}
-                      <span className="span">
-                        <b>{creator}</b>{" "}
-                      </span>
-                    </div>
+                  <div>
+                    <p>
+                      <b>{title}</b>
+                    </p>{" "}
+                    <span>
+                      <b>{category}</b>{" "}
+                    </span>
+                    <br />
+                    <span className="span">
+                      <b>{views}</b> Views
+                    </span>{" "}
+                    |{" "}
+                    <span className="span">
+                      <b>{creator}</b>{" "}
+                    </span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          <h2> Nothing In Watch Later </h2>
-        )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -9,18 +9,16 @@ export const Home = () => {
   const { categorie } = useContext(VideoContext);
 
   return (
-    <>
-      <h1> Categories </h1>
-      <div className="home">
-        {" "}
-        <SideBar />{" "}
-        <div className="show-category">
-          {" "}
+    <div className="div">
+      <SideBar />
+      <div className="b">
+        <h1> Categories </h1>{" "}
+        <div className="c">
           {categorie?.map(({ _id, thumbnail, category }) => (
             <div key={_id}>
               <NavLink className="navLink" to={`/category/${category}`}>
                 <img src={thumbnail} alt={category} />
-                <p style={{ textAlign: "left" }}>
+                <p>
                   <b>{category} </b>
                 </p>
               </NavLink>
@@ -28,6 +26,6 @@ export const Home = () => {
           ))}{" "}
         </div>
       </div>
-    </>
+    </div>
   );
 };

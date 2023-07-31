@@ -23,13 +23,7 @@ export const Explore = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "baseline",
-        justifyContent: "space-around",
-      }}
-    >
+    <div className="div ">
       <SideBar />
       <div className="explore-main-div">
         <h1> Explore </h1>
@@ -43,13 +37,7 @@ export const Explore = () => {
             const { _id, title, views, thumbnail, creator, category } = video;
             return (
               <div key={_id} className="explore-inner-div-b">
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}
-                >
+                <div className="category-A">
                   <img className="explore-inner-div-b-img" src={thumbnail} />
 
                   <FontAwesomeIcon
@@ -59,13 +47,7 @@ export const Explore = () => {
                         : handleWatchLater(video);
                     }}
                     icon={faClock}
-                    style={{
-                      marginLeft: "-2rem",
-                      height: "2rem",
-                      backgroundColor: "whitesmoke",
-                      borderRadius: "0px 0px 0px 10px",
-                      cursor: "pointer",
-                    }}
+                    className="category-Icon"
                   />
                 </div>
                 <div className="A">

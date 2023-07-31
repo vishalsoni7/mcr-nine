@@ -1,8 +1,16 @@
 .home {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.home-a {
+  display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
+  gap: 5rem;
 }
 
 .show-category {
@@ -13,8 +21,41 @@
   gap: 2rem;
 }
 
+.show-category p {
+  text-align: left;
+}
+
 .icon {
   height: 1.5rem;
   border-radius: 0px 0px 0px 10px;
   cursor: pointer;
+}
+
+.a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.b {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: left;
+  width: 70rem;
+}
+
+.c {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.c img {
+  width: 18rem;
+  height: 10rem;
 }

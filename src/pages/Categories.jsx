@@ -16,65 +16,39 @@ export const Category = () => {
   );
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "space-around",
-      }}
-    >
+    <div className="div">
       <SideBar />
-      <div className="explore-main-div">
-        <h1 style={{ textAlign: "left" }}> {categories} </h1>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            gap: "1rem",
-            flexWrap: "wrap",
-          }}
-        >
+      <div className="b">
+        <h1> {categories} </h1>
+        <div className="explore-inner-div-a">
           {filterCategories?.map((video) => {
             const { _id, title, views, thumbnail, creator, category } = video;
-
             return (
               <div key={_id} className="explore-inner-div-b">
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}
-                >
+                <div className="category-A">
                   <img className="explore-inner-div-b-img" src={thumbnail} />
+
                   <FontAwesomeIcon
-                    title={inWatchList ? "Remove" : "Add"}
                     onClick={() => {
                       inWatchList(_id)
                         ? removeFromWatchLater(_id)
                         : handleWatchLater(video);
                     }}
                     icon={faClock}
-                    style={{
-                      marginLeft: "-2rem",
-                      height: "2rem",
-                      backgroundColor: "whitesmoke",
-                      borderRadius: "0px 0px 0px 10px",
-                      cursor: "pointer",
-                    }}
+                    className="category-Icon"
                   />
                 </div>
-                <NavLink to={`/categories/${_id}`} className="navLink">
-                  <div className="A">
-                    <div>
-                      <img
-                        className="explore-about-img"
-                        src="user.jpg"
-                        alt="user"
-                      />
-                    </div>
-                    <div>
+
+                <div className="A">
+                  <div>
+                    <img
+                      className="explore-about-img"
+                      src="user.jpg"
+                      alt="user"
+                    />
+                  </div>
+                  <div>
+                    <NavLink to={`/categories/${_id}`} className="navLink">
                       <p>
                         <b>{title}</b>
                       </p>{" "}
@@ -89,9 +63,9 @@ export const Category = () => {
                       <span className="span">
                         <b>{creator}</b>{" "}
                       </span>
-                    </div>
+                    </NavLink>
                   </div>
-                </NavLink>
+                </div>
               </div>
             );
           })}

@@ -1,0 +1,89 @@
+.note_modal_outer_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #00000080;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+}
+
+.note_modal_outer_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 10px;
+  border-radius: 12px;
+  overflow: auto;
+  max-width: 250px;
+  width: 100%;
+  max-height: 80vh;
+  backdrop-filter: blur(100px);
+  border: none;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.note-div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.note-div input {
+  padding: 0.7rem;
+  font-size: 14px;
+  color: whitesmoke;
+  background-color: darkgray;
+  border-radius: 5px;
+  border: none;
+  width: 12rem;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+input:focus {
+  outline: none;
+}
+
+.note-input ::placeholder {
+  content: "write your note here";
+  color: whitesmoke;
+}
+
+.note-btn {
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: whitesmoke;
+  background-color: rgb(218, 53, 53);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.note-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  margin: 0rem 0.5rem 0.5rem 0rem;
+}
+
+.note-icon {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: small;
+}
+
+.note-div-a {
+  border-bottom: 0.1px solid;
+  width: 100%;
+}
