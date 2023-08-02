@@ -1,8 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 
-import { categories } from "../data/categories";
-import { videos } from "../data/video";
-
 export const VideoContext = createContext();
 
 const getDataFromLocalStorage = (key) => {
@@ -10,16 +7,17 @@ const getDataFromLocalStorage = (key) => {
   return data ? JSON.parse(data) : [];
 };
 
-const notesLists = getDataFromLocalStorage("notes");
-const isWatchLaters = getDataFromLocalStorage("watchLater");
+const noteListFromLocalStorage = getDataFromLocalStorage("notes");
+const watchLaterFromLocalStorage = getDataFromLocalStorage("watchLater");
+const playListFromLocalStorage = getDataFromLocalStorage("playlist");
 
 export const VideoPrivoder = ({ children }) => {
-  const [categorie, setCategories] = useState(categories);
-  const [isAllVideos, setIsAllVideos] = useState(videos);
-  const [isWatchLater, setIsWatchLater] = useState(isWatchLaters);
-  const [notes, setNotes] = useState("");
-  const [notesList, setNotesList] = useState(notesLists);
+  const [isWatchLater, setIsWatchLater] = useState(watchLaterFromLocalStorage);
+  const [notesList, setNotesList] = useState(noteListFromLocalStorage);
+  const [playListData, setPlayListData] = useState(playListFromLocalStorage);
+  const [playListModal, setPlayListModal] = useState(false);
   const [noteModal, setNoteModal] = useState(false);
+  const [editNoteId, setEditNoteId] = useState(null);
 
   const handleWatchLater = (item) => {
     setIsWatchLater((previ) => [...previ, item]);
@@ -36,38 +34,29 @@ export const VideoPrivoder = ({ children }) => {
     alert("Removed from watch later");
   };
 
-  const addNotes = () => {
-    notes.trim()
-      ? setNotesList((notesList) => [...notesList, notes])
-      : setNotesList(notesList);
-    setNotes("");
-  };
-
-  const deleteNote = (index) => {
-    const filterNotes = notesList.filter((_, noteIndex) => noteIndex !== index);
-    setNotesList(filterNotes);
-  };
-
   const values = {
-    categorie,
-    isAllVideos,
     handleWatchLater,
     isWatchLater,
     removeFromWatchLater,
     inWatchList,
-    addNotes,
-    setNotes,
     notesList,
+    setNotesList,
     noteModal,
     setNoteModal,
-    deleteNote,
-    notes,
+    playListModal,
+    setPlayListModal,
+    playListData,
+    setPlayListData,
+    editNoteId,
+    setEditNoteId,
   };
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notesList));
     localStorage.setItem("watchLater", JSON.stringify(isWatchLater));
-  }, [notesList, isWatchLater]);
+
+    localStorage.setItem("playlist", JSON.stringify(playListData));
+  }, [notesList, isWatchLater, playListData]);
 
   return (
     <>

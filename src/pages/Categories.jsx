@@ -6,12 +6,14 @@ import { SideBar } from "./SideBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
+import { videos } from "../data/video";
+
 export const Category = () => {
-  const { isAllVideos, handleWatchLater, inWatchList, removeFromWatchLater } =
+  const { handleWatchLater, inWatchList, removeFromWatchLater } =
     useContext(VideoContext);
   const { categories } = useParams();
 
-  const filterCategories = isAllVideos.filter(
+  const filterCategories = videos.filter(
     ({ category }) => category === categories
   );
 

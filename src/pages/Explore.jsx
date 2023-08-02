@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useContext } from "react";
 import { VideoContext } from "../component/VideosContext";
 
+import { videos } from "../data/video";
+
 import "../css/explore.css";
 import { SideBar } from "./SideBar";
 
@@ -9,21 +11,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export const Explore = () => {
-  const { isAllVideos, handleWatchLater, inWatchList, removeFromWatchLater } =
+  const { handleWatchLater, inWatchList, removeFromWatchLater } =
     useContext(VideoContext);
 
-  const [searchVideo, setSearchVideo] = useState(isAllVideos);
+  const [searchVideo, setSearchVideo] = useState(videos);
 
   const handleVideos = (e) => {
     const inputValue = e.target.value.toLowerCase();
-    const filterVideos = isAllVideos.filter(({ title }) =>
+    const filterVideos = videos.filter(({ title }) =>
       title.toLowerCase().includes(inputValue)
     );
-    setSearchVideo(inputValue === "" ? isAllVideos : filterVideos);
+    setSearchVideo(inputValue === "" ? videos : filterVideos);
   };
 
   return (
-    <div className="div ">
+    <div className="div">
       <SideBar />
       <div className="explore-main-div">
         <h1> Explore </h1>

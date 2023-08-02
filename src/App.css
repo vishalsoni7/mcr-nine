@@ -8,7 +8,7 @@ body {
 
 .div {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
