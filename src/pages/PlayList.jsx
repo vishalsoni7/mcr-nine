@@ -15,7 +15,7 @@ export const PlayList = () => {
     <div className="div">
       <SideBar />
 
-      <div className="playlist">
+      <div className="explore-main-div">
         <h1> Playlists </h1>
 
         <div className="pl">
