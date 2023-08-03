@@ -46,7 +46,7 @@ export const SingleVideo = () => {
       <SideBar />
 
       <div className="i-frame-div">
-        <iframe className="i-frame" src={findVideo?.src}></iframe>
+        {/* <iframe className="i-frame" src={findVideo?.src}></iframe> */}
         <div className="single-video-title">
           <div className="aa">
             {" "}
@@ -104,6 +104,7 @@ export const SingleVideo = () => {
                 <FontAwesomeIcon
                   onClick={() => deleteNote(n.id)}
                   icon={faTrash}
+                  className="cancle"
                 />{" "}
               </div>
             </div>

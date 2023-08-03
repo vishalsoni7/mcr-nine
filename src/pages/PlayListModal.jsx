@@ -1,35 +1,52 @@
 import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { VideoContext } from "../component/VideosContext";
+import { videos } from "../data/video";
+
 import "../css/note.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export const PlayListModal = () => {
   const { playListData, setPlayListData, setPlayListModal } =
     useContext(VideoContext);
 
+  const { videoId } = useParams();
+
   const [playListInput, setPlayListInput] = useState({
     name: "",
     describtion: "",
+    videos: [],
   });
+
+  const addToPlayList = (selectedId) => {
+    const selectedVideo = videos.find((video) => video._id === +videoId);
+    const upadatedPlayListData = playListData.map((pL) => {
+      if (pL.id === selectedId) {
+        return { ...pL, videos: [...pL.videos, selectedVideo] };
+      }
+      return pL;
+    });
+    setPlayListData(upadatedPlayListData);
+  };
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setPlayListInput({ ...playListInput, [name]: value });
   };
 
-  const addToPlayList = (e) => {
+  const createPlayList = (e) => {
     if (playListInput.name === "" || playListInput.describtion === "") {
       alert("Please fill inputs.");
     } else {
       e.preventDefault();
       const newPlayList = {
-        id: ` ${playListInput.describtion + playListInput.name} ${Date.now()}`,
+        id: `${playListInput.describtion + playListInput.name} ${Date.now()}`,
         ...playListInput,
       };
       setPlayListData([...playListData, newPlayList]);
-      setPlayListInput({ name: "", describtion: "" });
+      setPlayListInput({ name: "", describtion: "", videos: [] });
       setPlayListModal(false);
     }
   };
@@ -65,7 +82,7 @@ export const PlayListModal = () => {
         type="text"
         name="describtion"
       />
-      <button className="note-btn" onClick={addToPlayList}>
+      <button className="note-btn" onClick={(e) => createPlayList(e)}>
         {" "}
         Create New Playlist
       </button>
@@ -74,11 +91,12 @@ export const PlayListModal = () => {
         {" "}
         {playListData.map(({ id, name }) => (
           <div className="playlist-list-div" key={id}>
-            <p> {name} </p>
+            <p onClick={() => addToPlayList(id)}> {name} </p>
             <FontAwesomeIcon
               onClick={() => deletePlayList(id)}
-              icon={faTrash}
-            />{" "}
+              icon={faXmark}
+              className="cancle"
+            />
           </div>
         ))}{" "}
       </div>
