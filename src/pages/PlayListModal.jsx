@@ -3,6 +3,12 @@ import { useParams } from "react-router-dom";
 import { VideoContext } from "../component/VideosContext";
 import { videos } from "../data/video";
 
+import {
+  playListCreate,
+  deletedPlayList,
+  addedPlayList,
+  fillInput,
+} from "../data/toast";
 import "../css/note.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,6 +35,7 @@ export const PlayListModal = () => {
       return pL;
     });
     setPlayListData(upadatedPlayListData);
+    addedPlayList();
   };
 
   const handleInput = (e) => {
@@ -38,7 +45,7 @@ export const PlayListModal = () => {
 
   const createPlayList = (e) => {
     if (playListInput.name === "" || playListInput.describtion === "") {
-      alert("Please fill inputs.");
+      fillInput();
     } else {
       e.preventDefault();
       const newPlayList = {
@@ -48,12 +55,14 @@ export const PlayListModal = () => {
       setPlayListData([...playListData, newPlayList]);
       setPlayListInput({ name: "", describtion: "", videos: [] });
       setPlayListModal(false);
+      playListCreate();
     }
   };
 
   const deletePlayList = (id) => {
     const filterPlayList = playListData.filter((pL) => pL.id !== id);
     setPlayListData(filterPlayList);
+    deletedPlayList();
   };
 
   const cancleIt = () => {

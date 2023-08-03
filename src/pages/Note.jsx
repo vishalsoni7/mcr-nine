@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { VideoContext } from "../component/VideosContext";
-import "../css/note.css";
 
+import "../css/note.css";
+import { noteUpdate, fillInput } from "../data/toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,9 +14,10 @@ export const Note = ({ noteId }) => {
 
   const handleAddNotes = () => {
     if (!notes) {
-      alert("Please fill input.");
+      fillInput();
     } else if (notes !== "") {
       setNotesList([{ id: `${notes} - ${Date.now()}`, notes }, ...notesList]);
+
       setNotes("");
       setNoteModal(false);
       setEditNoteId(null);
@@ -30,6 +32,7 @@ export const Note = ({ noteId }) => {
         : { id: n.id, notes: n.notes }
     );
     setNotesList(updatedNote);
+    noteUpdate();
     setNoteModal(false);
     setEditNoteId(null);
   };

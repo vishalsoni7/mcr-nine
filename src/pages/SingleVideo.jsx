@@ -6,6 +6,7 @@ import { videos } from "../data/video";
 import { Note } from "./Note";
 import { PlayListModal } from "./PlayListModal";
 
+import { noteDeleted } from "../data/toast";
 import "../css/singlevideo.css";
 import "../css/note.css";
 
@@ -37,6 +38,7 @@ export const SingleVideo = () => {
   const deleteNote = (noteId) => {
     const filterNotes = notesList.filter((n) => n.id !== noteId);
     setNotesList([...filterNotes]);
+    noteDeleted();
   };
 
   const findVideo = videos.find(({ _id }) => +_id === +videoId);
@@ -46,7 +48,7 @@ export const SingleVideo = () => {
       <SideBar />
 
       <div className="i-frame-div">
-        {/* <iframe className="i-frame" src={findVideo?.src}></iframe> */}
+        <iframe className="i-frame" src={findVideo?.src}></iframe>
         <div className="single-video-title">
           <div className="aa">
             {" "}

@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { addWatchLater, removeWatchLater } from "../data/toast";
 
 export const VideoContext = createContext();
 
@@ -23,7 +24,7 @@ export const VideoPrivoder = ({ children }) => {
 
   const handleWatchLater = (item) => {
     setIsWatchLater((previ) => [...previ, item]);
-    alert("added in watch later");
+    addWatchLater();
   };
 
   const inWatchList = (id) => isWatchLater.some((video) => video._id === id);
@@ -33,7 +34,7 @@ export const VideoPrivoder = ({ children }) => {
       ({ _id }) => _id !== clickedVideo
     );
     setIsWatchLater(filterWatchLater);
-    alert("Removed from watch later");
+    removeWatchLater();
   };
 
   const values = {
