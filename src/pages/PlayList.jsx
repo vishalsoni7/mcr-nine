@@ -1,14 +1,13 @@
 import { useContext } from "react";
-import { VideoContext } from "../component/VideosContext";
+import { NavLink } from "react-router-dom";
 import { SideBar } from "./SideBar";
 import { PlayListModal } from "./PlayListModal";
+import { VideoContext } from "../component/VideosContext";
 
 import "../css/playlist.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusMinus } from "@fortawesome/free-solid-svg-icons";
-
-import { NavLink } from "react-router-dom";
 
 export const PlayList = () => {
   const { playListData, playListModal, setPlayListModal } =
@@ -19,7 +18,7 @@ export const PlayList = () => {
       <SideBar />
 
       <div className="explore-main-div">
-        <h1> Playlists </h1>
+        <h1>All Playlists </h1>
 
         <div className="pl">
           {playListData.map((playlist) => (
@@ -54,7 +53,7 @@ export const PlayList = () => {
             onClick={(e) => e.stopPropagation()}
             className="note_modal_outer_container"
           >
-            <PlayListModal />
+            <PlayListModal addPlaylist />
           </div>
         </div>
       )}

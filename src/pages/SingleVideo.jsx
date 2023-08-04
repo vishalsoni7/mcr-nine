@@ -51,17 +51,14 @@ export const SingleVideo = () => {
         <iframe className="i-frame" src={findVideo?.src}></iframe>
         <div className="single-video-title">
           <div className="aa">
-            {" "}
             <h3>
               <b> {findVideo?.title} </b>
             </h3>
             <span>
-              {" "}
-              {findVideo?.views} Views | by {findVideo?.creator}{" "}
+              {findVideo?.views} Views | by {findVideo?.creator}
             </span>
           </div>
           <div className="single-video-icon">
-            {" "}
             <FontAwesomeIcon
               onClick={() => {
                 inWatchList(findVideo?._id)
@@ -70,7 +67,7 @@ export const SingleVideo = () => {
               }}
               icon={faClock}
               className="icon"
-            />{" "}
+            />
             <FontAwesomeIcon
               onClick={() => setPlayListModal(true)}
               icon={faBars}
@@ -82,20 +79,17 @@ export const SingleVideo = () => {
               }}
               icon={faListCheck}
               className="icon"
-            />{" "}
-          </div>{" "}
-        </div>{" "}
+            />
+          </div>
+        </div>
         <div>
-          {" "}
-          <h3> My Notes </h3>{" "}
+          <h3> My Notes </h3>
         </div>
         <div className="note-div-a">
           {notesList.map((n) => (
             <div key={n.id} className="note-title">
-              {" "}
               <b> {n.notes}</b>
               <div className="note-icon">
-                {" "}
                 <FontAwesomeIcon
                   onClick={() => {
                     setNoteModal(true);
@@ -107,10 +101,10 @@ export const SingleVideo = () => {
                   onClick={() => deleteNote(n.id)}
                   icon={faTrash}
                   className="cancle"
-                />{" "}
+                />
               </div>
             </div>
-          ))}{" "}
+          ))}
         </div>
       </div>
 
@@ -153,7 +147,7 @@ export const SingleVideo = () => {
               <div className="more-video-details">
                 <span> {title} </span> <span> {creator} </span>
               </div>
-            </div>{" "}
+            </div>
           </NavLink>
         ))}
       </div>

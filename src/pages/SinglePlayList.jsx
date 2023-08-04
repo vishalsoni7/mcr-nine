@@ -24,6 +24,13 @@ export const SinglePlayList = () => {
       <div className="b">
         <h1> {getName} </h1>
         <div className="explore-inner-div-a">
+          {!allVideos?.length && (
+            <p>
+              {" "}
+              <b> Nothing in Playlist </b>{" "}
+            </p>
+          )}
+
           {allVideos?.map((video) => {
             const { _id, title, views, thumbnail, creator, category } = video;
             return (
@@ -46,7 +53,7 @@ export const SinglePlayList = () => {
                   <div>
                     <img
                       className="explore-about-img"
-                      src="user.jpg"
+                      src="/user.jpg"
                       alt="user"
                     />
                   </div>

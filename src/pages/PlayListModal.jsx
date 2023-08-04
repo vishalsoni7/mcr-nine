@@ -14,7 +14,7 @@ import "../css/note.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-export const PlayListModal = () => {
+export const PlayListModal = ({ addPlaylist }) => {
   const { playListData, setPlayListData, setPlayListModal } =
     useContext(VideoContext);
 
@@ -49,12 +49,13 @@ export const PlayListModal = () => {
     } else {
       e.preventDefault();
       const newPlayList = {
-        id: `${playListInput.describtion + playListInput.name} ${Date.now()}`,
+        id: `${playListInput.describtion} + ${
+          playListInput.name
+        } ${Date.now()}`,
         ...playListInput,
       };
       setPlayListData([...playListData, newPlayList]);
       setPlayListInput({ name: "", describtion: "", videos: [] });
-      setPlayListModal(false);
       playListCreate();
     }
   };
@@ -66,7 +67,7 @@ export const PlayListModal = () => {
   };
 
   const cancleIt = () => {
-    setPlayListInput({ name: "", describtion: "" });
+    setPlayListInput({ name: "", describtion: "", videos: [] });
     setPlayListModal(false);
   };
 
@@ -100,7 +101,14 @@ export const PlayListModal = () => {
         {" "}
         {playListData.map(({ id, name }) => (
           <div className="playlist-list-div" key={id}>
-            <p onClick={() => addToPlayList(id)}> {name} </p>
+            <p
+              onClick={() => {
+                !addPlaylist && addToPlayList(id);
+              }}
+            >
+              {" "}
+              {name}{" "}
+            </p>
             <FontAwesomeIcon
               onClick={() => deletePlayList(id)}
               icon={faXmark}

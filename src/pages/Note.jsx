@@ -17,7 +17,6 @@ export const Note = ({ noteId }) => {
       fillInput();
     } else if (notes !== "") {
       setNotesList([{ id: `${notes} - ${Date.now()}`, notes }, ...notesList]);
-
       setNotes("");
       setNoteModal(false);
       setEditNoteId(null);
@@ -27,9 +26,7 @@ export const Note = ({ noteId }) => {
   const handleEdit = () => {
     const editNote = notesList.find((n) => n.id === noteId);
     const updatedNote = notesList.map((n) =>
-      n.id === editNote.id
-        ? (n = { id: n.id, notes })
-        : { id: n.id, notes: n.notes }
+      n.id === editNote.id ? { id: n.id, notes: notes || n.notes } : n
     );
     setNotesList(updatedNote);
     noteUpdate();
@@ -42,8 +39,7 @@ export const Note = ({ noteId }) => {
   return (
     <div className="note-div">
       <span className="note-modal">
-        {" "}
-        <b>Add Note </b>{" "}
+        <b>Add Note </b>
         <FontAwesomeIcon
           className="cancle"
           onClick={() => setNoteModal(false)}
@@ -52,7 +48,7 @@ export const Note = ({ noteId }) => {
       </span>
       <input
         type="text"
-        defaultValue={noteId ? findNote?.notes : ""}
+        defaultValue={noteId ? findNote?.notes : notes}
         placeholder=" Write your note here"
         onChange={(e) => setNotes(e.target.value)}
       />
@@ -62,7 +58,6 @@ export const Note = ({ noteId }) => {
         }}
         className="note-btn"
       >
-        {" "}
         {noteId ? "Update Note" : "Add Note"}
       </button>
     </div>

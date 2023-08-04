@@ -56,7 +56,7 @@ export const Explore = () => {
                   <div>
                     <img
                       className="explore-about-img"
-                      src="user.jpg"
+                      src="/user.jpg"
                       alt="user"
                     />
                   </div>

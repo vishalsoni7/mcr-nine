@@ -15,6 +15,13 @@ export const WatchLater = () => {
         <h1> Watch Later </h1>
 
         <div className="explore-inner-div-a">
+          {!isWatchLater?.length && (
+            <p>
+              {" "}
+              <b> Nothing in Watch later </b>{" "}
+            </p>
+          )}
+
           {isWatchLater?.map((video) => {
             const { _id, title, views, thumbnail, creator, category } = video;
             return (
