@@ -88,8 +88,6 @@ input:focus {
 
 .note-div-a {
   width: 100%;
-  border-radius: 5px;
-  border-bottom: 0.1px solid;
 }
 
 .note-modal {
@@ -103,20 +101,5 @@ input:focus {
 .cancle:hover {
   transition: 0.2s;
   color: crimson;
-  cursor: pointer;
-}
-
-.playlist-list {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  line-height: 0;
-}
-
-.playlist-list-div {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   cursor: pointer;
 }

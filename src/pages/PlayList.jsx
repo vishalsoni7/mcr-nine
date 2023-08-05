@@ -37,6 +37,12 @@ export const PlayList = () => {
               </div>
             </NavLink>
           ))}
+          {!playListData.length && (
+            <span style={{ color: "GrayText" }}>
+              {" "}
+              <b> Click to Create playlist </b>{" "}
+            </span>
+          )}
           <FontAwesomeIcon
             onClick={() => setPlayListModal(true)}
             icon={faPlusMinus}

@@ -28,7 +28,11 @@ export const Category = () => {
             return (
               <div key={_id} className="explore-inner-div-b">
                 <div className="category-A">
-                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                  <img
+                    className="explore-inner-div-b-img"
+                    src={thumbnail}
+                    alt="thubnail"
+                  />
 
                   <FontAwesomeIcon
                     onClick={() => {

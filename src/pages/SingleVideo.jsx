@@ -48,7 +48,11 @@ export const SingleVideo = () => {
       <SideBar />
 
       <div className="i-frame-div">
-        <iframe className="i-frame" src={findVideo?.src}></iframe>
+        <iframe
+          className="i-frame"
+          src={findVideo?.src}
+          title="youtube video"
+        ></iframe>
         <div className="single-video-title">
           <div className="aa">
             <h3>
@@ -110,7 +114,10 @@ export const SingleVideo = () => {
 
       {noteModal && (
         <div
-          onClick={() => setNoteModal(false)}
+          onClick={() => {
+            setEditNoteId(null);
+            setNoteModal(false);
+          }}
           className="note_modal_outer_div"
         >
           <div

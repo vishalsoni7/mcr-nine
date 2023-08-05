@@ -12,6 +12,8 @@ export const Note = ({ noteId }) => {
 
   const [notes, setNotes] = useState("");
 
+  const findNote = notesList?.find((n) => n?.id === noteId);
+
   const handleAddNotes = () => {
     if (!notes) {
       fillInput();
@@ -33,8 +35,6 @@ export const Note = ({ noteId }) => {
     setNoteModal(false);
     setEditNoteId(null);
   };
-
-  const findNote = notesList?.find((n) => n?.id === noteId);
 
   return (
     <div className="note-div">

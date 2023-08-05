@@ -16,10 +16,10 @@ export const WatchLater = () => {
 
         <div className="explore-inner-div-a">
           {!isWatchLater?.length && (
-            <p>
+            <span style={{ color: "GrayText" }}>
               {" "}
               <b> Nothing in Watch later </b>{" "}
-            </p>
+            </span>
           )}
 
           {isWatchLater?.map((video) => {
@@ -27,7 +27,11 @@ export const WatchLater = () => {
             return (
               <div key={_id} className="explore-inner-div-b">
                 <div className="category-A">
-                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                  <img
+                    className="explore-inner-div-b-img"
+                    src={thumbnail}
+                    alt="thumbnail"
+                  />
 
                   <FontAwesomeIcon
                     onClick={() => {

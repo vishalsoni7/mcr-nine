@@ -25,10 +25,10 @@ export const SinglePlayList = () => {
         <h1> {getName} </h1>
         <div className="explore-inner-div-a">
           {!allVideos?.length && (
-            <p>
+            <span style={{ color: "GrayText" }}>
               {" "}
               <b> Nothing in Playlist </b>{" "}
-            </p>
+            </span>
           )}
 
           {allVideos?.map((video) => {
@@ -36,7 +36,11 @@ export const SinglePlayList = () => {
             return (
               <div key={_id} className="explore-inner-div-b">
                 <div className="category-A">
-                  <img className="explore-inner-div-b-img" src={thumbnail} />
+                  <img
+                    className="explore-inner-div-b-img"
+                    src={thumbnail}
+                    alt="thubnail"
+                  />
 
                   <FontAwesomeIcon
                     onClick={() => {
