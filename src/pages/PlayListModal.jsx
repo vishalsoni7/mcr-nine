@@ -26,18 +26,6 @@ export const PlayListModal = ({ addPlaylist }) => {
     videos: [],
   });
 
-  const addToPlayList = (selectedId) => {
-    const selectedVideo = videos.find((video) => video._id === +videoId);
-    const upadatedPlayListData = playListData.map((pL) => {
-      if (pL.id === selectedId) {
-        return { ...pL, videos: [...pL.videos, selectedVideo] };
-      }
-      return pL;
-    });
-    setPlayListData(upadatedPlayListData);
-    addedPlayList();
-  };
-
   const handleInput = (e) => {
     const { name, value } = e.target;
     setPlayListInput({ ...playListInput, [name]: value });
@@ -54,10 +42,23 @@ export const PlayListModal = ({ addPlaylist }) => {
         } ${Date.now()}`,
         ...playListInput,
       };
+      console.log(newPlayList);
       setPlayListData([...playListData, newPlayList]);
       setPlayListInput({ name: "", describtion: "", videos: [] });
       playListCreate();
     }
+  };
+
+  const addToPlayList = (selectedId) => {
+    const selectedVideo = videos.find((video) => video._id === +videoId);
+    const upadatedPlayListData = playListData.map((pL) => {
+      if (pL.id === selectedId) {
+        return { ...pL, videos: [...pL.videos, selectedVideo] };
+      }
+      return pL;
+    });
+    setPlayListData(upadatedPlayListData);
+    addedPlayList();
   };
 
   const deletePlayList = (id) => {

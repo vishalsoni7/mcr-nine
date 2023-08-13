@@ -15,10 +15,8 @@ const playListFromLocalStorage = getDataFromLocalStorage("playlist");
 export const VideoPrivoder = ({ children }) => {
   const [isWatchLater, setIsWatchLater] = useState(watchLaterFromLocalStorage);
   const [notesList, setNotesList] = useState(noteListFromLocalStorage);
-
   const [playListData, setPlayListData] = useState(playListFromLocalStorage);
   const [playListModal, setPlayListModal] = useState(false);
-
   const [noteModal, setNoteModal] = useState(false);
   const [editNoteId, setEditNoteId] = useState(null);
 
@@ -57,7 +55,6 @@ export const VideoPrivoder = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notesList));
     localStorage.setItem("watchLater", JSON.stringify(isWatchLater));
-
     localStorage.setItem("playlist", JSON.stringify(playListData));
   }, [notesList, isWatchLater, playListData]);
 
